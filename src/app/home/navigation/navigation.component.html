@@ -1,1 +1,18 @@
-<p>navigation works!</p>
+<!-- <mat-toolbar>My App</mat-toolbar> -->
+<mat-toolbar color="primary"  >
+  <mat-toolbar-row>
+   <span>
+      <img class="logo" src="../assets/eatsmarticon.png">
+   </span>
+  <span>
+   <p class="toolbarname"> L O C A T I O N S</p>
+  </span>
+  <mat-form-field class="example-full-width">
+   <input matInput placeholder="Favorite food" value="Sushi">
+ </mat-form-field>
+ <span class="example-spacer"></span>
+ <a routerLink="locations">
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">filter</mat-icon>
+ </a>
+ </mat-toolbar-row>
+ </mat-toolbar>

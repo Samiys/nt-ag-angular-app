@@ -6,7 +6,7 @@ import { MainViewComponent } from './home/main-view/main-view.component';
 import { DetailViewComponent } from './home/detail-view/detail-view.component';
 import { SideBySideComponent } from './home/side-by-side/side-by-side.component';
 import { NavigationComponent } from './home/navigation/navigation.component';
-import { HomeComponent } from './home/home.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,12 +14,12 @@ import { HomeComponent } from './home/home.component';
     MainViewComponent,
     DetailViewComponent,
     SideBySideComponent,
-    NavigationComponent,
-    HomeComponent
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
