@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api_key: '45d5ba4b8e791d9cc03af53a867d1ecf',
+  apiUrl: 'http://ws.audioscrobbler.com/2.0/?method='
 };
 
 /*

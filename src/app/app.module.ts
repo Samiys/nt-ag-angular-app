@@ -7,6 +7,7 @@ import { DetailViewComponent } from './home/detail-view/detail-view.component';
 import { SideBySideComponent } from './home/side-by-side/side-by-side.component';
 import { NavigationComponent } from './home/navigation/navigation.component';
 import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

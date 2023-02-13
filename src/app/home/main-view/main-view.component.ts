@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
+import { MainViewService } from './main-view.service';
 
 @Component({
   selector: 'app-main-view',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-view.component.scss']
 })
 export class MainViewComponent implements OnInit {
+  topArtists: any;
 
-  constructor() { }
+  constructor(
+    private mainViewSerivce: MainViewService
+  ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.topArtists = await firstValueFrom(this.mainViewSerivce.getTopArtists());
+    console.log(this.topArtists);
   }
 
 }
