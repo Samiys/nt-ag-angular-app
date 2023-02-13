@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./detail-view.component.scss']
 })
 export class DetailViewComponent implements OnInit {
-  artistDetail: any;
+  artistDetail: any = '';
   artistName: string = '';
   topFiveTracks: any;
   topFiveAlbums: any

@@ -1,5 +1,57 @@
-<p>detail-view works!</p>
 <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
-  <img *ngIf="artistDetail" [src]="artistDetail.image[4]['#text']">
+  <div class="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-center">
+    <mat-card class="home-card">
+      <mat-card-content class="home-card-content">
+        <img mat-card-image *ngIf="artistDetail"
+          [src]="artistDetail.image[4]['#text']"
+          alt="Photo of a Shiba Inu">
+          <div *ngIf="artistDetail" class="pt-1.5">
+            <h1 class="text-2xl font-bold text-gray-900">{{artistDetail.name}}</h1>
+            <h1 class="text-2xl font-bold text-gray-900">Listeners: {{artistDetail.stats.listeners | numberSuffex: 1}}</h1>
+            <h1 class="text-2xl font-bold text-gray-900">Plays: {{artistDetail.stats.playcount  | numberSuffex}}</h1>
+          </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 
+  <mat-grid-list cols="2" rowHeight="2:2">
+    <mat-grid-tile>
+      <mat-card class="w-180">
+        <mat-card-header>
+          <mat-card-subtitle class="text-xl font-bold text-black mb-5">Top 5 tracks</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="cursor-default">
+          <mat-list>
+            <mat-list-item *ngFor="let track of topFiveTracks" class="mb-3">
+              <h2 class="list-avatar">
+                <a class="avatar avatar-sm me-2">
+                  <img class="avatar-img rounded-circle" src="{{track.image[1]['#text']}}" alt="Artist Image">
+                </a>
+                <a [routerLink]="'/detail-view/'+ track.name" class="ml-3">{{track.name}} <br> <span>listeners: {{track.listeners}}</span></a>
+              </h2>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card class="w-180">
+        <mat-card-header>
+          <mat-card-subtitle class="text-xl font-bold text-black mb-5">Top 5 albums</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="cursor-default">
+          <mat-list>
+            <mat-list-item *ngFor="let album of topFiveAlbums" class="mb-3">
+              <h2 class="list-avatar">
+                <a class="avatar avatar-sm me-2">
+                  <img class="avatar-img rounded-circle" src="{{album.image[1]['#text']}}" alt="Artist Image">
+                </a>
+                <a [routerLink]="'/detail-view/'+ album.name" class="ml-3">{{album.name}}</a>
+              </h2>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
