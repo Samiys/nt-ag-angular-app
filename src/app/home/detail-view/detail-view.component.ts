@@ -11,6 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailViewComponent implements OnInit {
   detailView: any;
   artistName: string = '';
+  topFiveTracks: any;
+  topFiveAlbums: any
 
   constructor(
     private detailViewService: DetailViewService,
@@ -19,9 +21,9 @@ export class DetailViewComponent implements OnInit {
 
   async ngOnInit() {
     this.artistName = this.route.snapshot.params['name'];
-    console.log(this.artistName);
-    this.detailView = await firstValueFrom(this.detailViewService.getArtistInfo(this.artistName));
-    console.log(this.detailView);
+    this.detailView = (await firstValueFrom(this.detailViewService.getArtistInfo(this.artistName))).artist;
+    this.topFiveTracks = (await firstValueFrom(this.detailViewService.topFiveTracks(this.artistName))).toptracks;
+    this.topFiveAlbums = (await firstValueFrom(this.detailViewService.topFiveAlbums(this.artistName))).topalbums;
   }
 
 }

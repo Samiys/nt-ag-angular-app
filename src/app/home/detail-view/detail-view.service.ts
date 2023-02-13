@@ -20,4 +20,22 @@ export class DetailViewService {
             shareReplay(1)
         );
   }
+
+  topFiveTracks(artistName: string): Observable<any> {
+    return this.http.get<any>(environment.apiUrl + `artist.gettoptracks&artist=${artistName}&api_key=${environment.api_key}&format=json&limit=5`)
+        .pipe(map( (response: any) => {
+          return response;
+            }), last(), catchError((error: HttpErrorResponse) => throwError(error.error)),
+            shareReplay(1)
+        );
+  }
+
+  topFiveAlbums(artistName: string): Observable<any> {
+    return this.http.get<any>(environment.apiUrl + `artist.gettopalbums&artist=${artistName}&api_key=${environment.api_key}&format=json&limit=5`)
+        .pipe(map( (response: any) => {
+          return response;
+            }), last(), catchError((error: HttpErrorResponse) => throwError(error.error)),
+            shareReplay(1)
+        );
+  }
 }
