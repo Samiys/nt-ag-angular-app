@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { MainViewService } from './main-view.service';
+import { countries } from '../../shared/country-data';
+import { Countries } from '../../shared/interface.type';
 
 @Component({
   selector: 'app-main-view',
@@ -9,13 +11,23 @@ import { MainViewService } from './main-view.service';
 })
 export class MainViewComponent implements OnInit {
   topArtists: any;
+  selectedCountry: string = 'Germany';
+  countries: Countries[] = countries;
 
   constructor(
     private mainViewSerivce: MainViewService
   ) { }
 
-  async ngOnInit() {
-    this.topArtists = await firstValueFrom(this.mainViewSerivce.getTopArtists());
+  ngOnInit() {
+    this.fetchTopArtists(this.selectedCountry);
+  }
+
+  async updateList() {
+    this.fetchTopArtists(this.selectedCountry);
+  }
+
+  async fetchTopArtists(selectedCountry: string) {
+    this.topArtists = (await firstValueFrom(this.mainViewSerivce.getTopArtists(selectedCountry))).topartists.artist;
     console.log(this.topArtists);
   }
 

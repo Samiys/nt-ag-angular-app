@@ -12,8 +12,8 @@ export class MainViewService {
     private http: HttpClient
   ) { }
 
-  getTopArtists(): Observable<any> {
-    return this.http.get<any>(environment.apiUrl + `geo.gettopartists&country=spain&api_key=${environment.api_key}&format=json&limit=10`)
+  getTopArtists(country: string): Observable<any> {
+    return this.http.get<any>(environment.apiUrl + `geo.gettopartists&country=${country}&api_key=${environment.api_key}&format=json&limit=10`)
         .pipe(map( (response: any) => {
           return response;
             }), last(), catchError((error: HttpErrorResponse) => throwError(error.error)),
