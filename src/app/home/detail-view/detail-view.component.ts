@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./detail-view.component.scss']
 })
 export class DetailViewComponent implements OnInit {
-  detailView: any;
+  artistDetail: any;
   artistName: string = '';
   topFiveTracks: any;
   topFiveAlbums: any
@@ -21,9 +21,13 @@ export class DetailViewComponent implements OnInit {
 
   async ngOnInit() {
     this.artistName = this.route.snapshot.params['name'];
-    this.detailView = (await firstValueFrom(this.detailViewService.getArtistInfo(this.artistName))).artist;
-    this.topFiveTracks = (await firstValueFrom(this.detailViewService.topFiveTracks(this.artistName))).toptracks;
-    this.topFiveAlbums = (await firstValueFrom(this.detailViewService.topFiveAlbums(this.artistName))).topalbums;
+    console.log(this.artistName);
+    this.artistDetail = (await firstValueFrom(this.detailViewService.getArtistInfo(this.artistName))).artist;
+    this.topFiveTracks = (await firstValueFrom(this.detailViewService.topFiveTracks(this.artistName))).toptracks.track;
+    this.topFiveAlbums = (await firstValueFrom(this.detailViewService.topFiveAlbums(this.artistName))).topalbums.album;
+    console.log(this.artistDetail);
+    console.log(this.topFiveTracks);
+    console.log(this.topFiveAlbums);
   }
 
 }
