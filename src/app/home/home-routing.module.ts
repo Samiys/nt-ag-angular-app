@@ -22,7 +22,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'detail-view',
+    path: 'detail-view/:name',
     component: DetailViewComponent
   },
   {
