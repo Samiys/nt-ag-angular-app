@@ -35,19 +35,28 @@ export class NavigationComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  async openMenu(e) {
+  openMenu(e) {
     if(this.searchTerm.length > 0) {
       this.isMenuOpen = true;
       this.artistsName = [];
-      this.navigationSerivce.searchArtist(this.searchTerm).subscribe(resp => {
-        resp.results.artistmatches.artist.map(artist => {
-          this.artistsName.push(artist.name);
-        });
-      });
-      console.log('artistsName: ', this.artistsName);
+      this.searchArtist();
       return;
     }
     this.isMenuOpen = false;
+  }
+
+  async searchArtist() {
+    try {
+      this.navigationSerivce.searchArtist(this.searchTerm).subscribe(resp => {
+        if(resp) {
+          resp.results.artistmatches.artist.map(artist => {
+            this.artistsName.push(artist.name);
+          });
+        }
+      });
+    } catch (error) {
+      throw new Error('Something went wrong.')
+    }
   }
 
 }
