@@ -9,7 +9,7 @@ import { NavigationComponent } from './home/navigation/navigation.component';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NumberSuffixesPipe } from './shared/numbers-pipe';
+import { NumberSuffixesPipe } from './shared/pipe/numbers.pipe';
 
 @NgModule({
   declarations: [

@@ -12,7 +12,7 @@ export class DetailViewComponent implements OnInit {
   artistDetail: any = '';
   artistName: string = '';
   topFiveTracks: any;
-  topFiveAlbums: any
+  topFiveAlbums: any;
 
   constructor(
     private detailViewService: DetailViewService,
