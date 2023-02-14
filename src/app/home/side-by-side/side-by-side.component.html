@@ -1,1 +1,33 @@
-<p>side-by-side works!</p>
+<div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
+  <div class="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-center mt-5">
+    <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Compare Artists</h2>
+  </div>
+  <mat-grid-list cols="2" rowHeight="2:2" gutterSize="20px">
+    <mat-grid-tile>
+      <mat-card class="w-180">
+        <mat-card-header>
+          <mat-card-subtitle class="text-xl font-bold text-black mb-5">Artist 1</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="cursor-default">
+          <input [(ngModel)]="searchArtist1" type="text" id="myInput" (input)="openArtistOneMenu()" placeholder="Search for artist.." title="Type in a name">
+          <ul *ngIf="isArtistOneMenuOpen" id="myUL" class="overflow-auto cursor-default h-80 w-full">
+            <li *ngFor="let name of artistsOneName"><a>{{name}}</a></li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card class="w-180">
+        <mat-card-header>
+          <mat-card-subtitle class="text-xl font-bold text-black mb-5">Artist 2</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="cursor-default">
+          <input [(ngModel)]="searchArtist2" type="text" id="myInput" (input)="openArtistTwoMenu()" placeholder="Search for artist.." title="Type in a name">
+          <ul *ngIf="isArtistTwoMenuOpen" id="myUL" class="overflow-auto cursor-default h-80 w-full">
+            <li *ngFor="let name of artistsTwoName"><a>{{name}}</a></li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
