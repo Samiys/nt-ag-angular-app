@@ -15,7 +15,6 @@ export class SideBySideComponent implements OnInit {
   isArtistTwoMenuOpen = false;
   artistOneNameDetail: string;
   artistTwoNameDetail: string;
-  artistName: any;
 
   constructor(
     private navigationSerivce: NavigationService

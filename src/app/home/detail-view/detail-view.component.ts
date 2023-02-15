@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DetailViewService } from './detail-view.service';
 import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { ArtistDetail, TopAlbums, TopTracks } from '../../shared/interface.type';
 
 @Component({
   selector: 'app-detail-view',
@@ -9,12 +10,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./detail-view.component.scss']
 })
 export class DetailViewComponent implements OnInit {
-  @Input() artistOneInput: any;
-  @Input() artistTwoInput: any;
-  artistDetail: any = '';
+  @Input() artistOneInput: string;
+  @Input() artistTwoInput: string;
+  artistDetail: ArtistDetail;
   artistName: string = '';
-  topFiveTracks: any;
-  topFiveAlbums: any;
+  topFiveTracks: TopTracks[];
+  topFiveAlbums: TopAlbums[];
   isLoading: boolean = true;
 
   constructor(

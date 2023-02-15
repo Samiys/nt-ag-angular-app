@@ -24,7 +24,7 @@
             <a class="avatar avatar-sm me-2" [routerLink]="'/detail-view/'+ artist.name">
               <img class="avatar-img rounded-circle" src="{{artist.image[1]['#text']}}" alt="Artist Image">
             </a>
-            <a [routerLink]="'/detail-view/'+ artist.name" class="ml-3">{{artist.name}} <br> <span>listeners: {{artist.listeners}}</span></a>
+            <a [routerLink]="'/detail-view/'+ artist.name" class="ml-3">{{artist.name}}<br><small>listeners: {{artist.listeners | numberSuffex: 1}}</small></a>
           </h2>
         </mat-list-item>
       </mat-list>

@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subject, debounceTime, distinctUntilChanged } from 'rxjs';
+import { Observable } from 'rxjs';
 import { NavigationService } from './navigation.service';
 
 @Component({
@@ -12,9 +12,7 @@ export class NavigationComponent implements OnInit {
   @ViewChild('toggleButton') toggleButton: ElementRef;
   @ViewChild('menu') menu: ElementRef;
   searchTerm: string;
-  searchTermChanged: Subject<string> = new Subject<string>();
   artistsName: string[] = [];
-  searchText = '';
   isMenuOpen = false;
   searchResults$: Observable<any>;
 

@@ -28,7 +28,7 @@
                 <a class="avatar avatar-sm me-2">
                   <img class="avatar-img rounded-circle" src="{{track.image[1]['#text']}}" alt="Artist Image">
                 </a>
-                <a [routerLink]="'/detail-view/'+ track.name" class="ml-3">{{track.name}} <br> <span>listeners: {{track.listeners}}</span></a>
+                <a [routerLink]="'/detail-view/'+ track.name" class="ml-3">{{track.name}} <br> <small>Playcount: {{track.playcount | numberSuffex: 1}}</small></a>
               </h2>
             </mat-list-item>
           </mat-list>
@@ -47,7 +47,7 @@
                 <a class="avatar avatar-sm me-2">
                   <img class="avatar-img rounded-circle" src="{{album.image[1]['#text']}}" alt="Artist Image">
                 </a>
-                <a [routerLink]="'/detail-view/'+ album.name" class="ml-3">{{album.name}}</a>
+                <a [routerLink]="'/detail-view/'+ album.name" class="ml-3">{{album.name}}<br> <small>Playcount: {{album.playcount | numberSuffex: 1}}</small></a>
               </h2>
             </mat-list-item>
           </mat-list>
