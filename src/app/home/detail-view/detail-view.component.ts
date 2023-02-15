@@ -15,6 +15,7 @@ export class DetailViewComponent implements OnInit {
   artistName: string = '';
   topFiveTracks: any;
   topFiveAlbums: any;
+  isLoading: boolean = true;
 
   constructor(
     private detailViewService: DetailViewService,
@@ -35,6 +36,8 @@ export class DetailViewComponent implements OnInit {
     this.artistDetail = (await firstValueFrom(this.detailViewService.getArtistInfo(artist_name))).artist;
     this.topFiveTracks = (await firstValueFrom(this.detailViewService.topFiveTracks(artist_name))).toptracks.track;
     this.topFiveAlbums = (await firstValueFrom(this.detailViewService.topFiveAlbums(artist_name))).topalbums.album;
+    if(this.artistDetail && this.topFiveTracks && this.topFiveAlbums)
+      this.isLoading = false;
   }
 
 }

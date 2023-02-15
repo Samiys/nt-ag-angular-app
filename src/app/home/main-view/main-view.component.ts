@@ -13,6 +13,7 @@ export class MainViewComponent implements OnInit {
   topArtists: any;
   selectedCountry: string = 'Germany';
   countries: Countries[] = countries;
+  isLoading: boolean = true;
 
   constructor(
     private mainViewSerivce: MainViewService
@@ -28,7 +29,8 @@ export class MainViewComponent implements OnInit {
 
   async fetchTopArtists(selectedCountry: string) {
     this.topArtists = (await firstValueFrom(this.mainViewSerivce.getTopArtists(selectedCountry))).topartists.artist;
-    console.log(this.topArtists);
+    if(this.topArtists)
+      this.isLoading = false;
   }
 
 }
