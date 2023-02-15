@@ -1,31 +1,21 @@
-<h1 align="center">Welcome to NT AG Angular Task 👋</h1>
-<p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
-  <a href="https://docs.google.com/document/d/e/2PACX-1vScs9xO3IFDBl3lMqPWpw71DMXyR0Ivnk2u8oMsdTL9jhBrVBCWZ-hRXemyKKGHlMMNB6vbd7Rp-LJ6/pub" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-  <a href="#" target="_blank">
-    <img alt="License: ISC" src="https://img.shields.io/badge/License-ISC-yellow.svg" />
-  </a>
-</p>
+# NtAgCodingChallenge
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.5.
 
 ### ✨ [Demo](https://www.loom.com/share/5266b929fe71466aaf40a6fe1ed617a5)
 
-## Install
+## Development server
 
-```sh
-npm install
-```
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Usage
+## Code scaffolding
 
-```sh
-npm run dev
-```
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Author
+## Build
 
-👤 **Sami Younas**
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-* Github: [@Samiys](https://github.com/Samiys)
-* LinkedIn: [@samiyounas](https://linkedin.com/in/samiyounas)
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
