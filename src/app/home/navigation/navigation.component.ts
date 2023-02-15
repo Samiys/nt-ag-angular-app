@@ -1,5 +1,6 @@
-import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { Observable, firstValueFrom } from 'rxjs';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { NavigationService } from './navigation.service';
 
 @Component({
@@ -19,14 +20,13 @@ export class NavigationComponent implements OnInit {
   constructor(
     private navigationSerivce: NavigationService,
     private renderer: Renderer2,
-    private _eref: ElementRef
+    private router: Router
   ) { }
 
   async ngOnInit() {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.renderer.listen('document', 'click',(e:Event)=> {
       this.isMenuOpen=false;
-      // if(e.target !== this.toggleButton.nativeElement && e.target!==this.menu.nativeElement){
-      // }
     });
   }
 
@@ -57,6 +57,11 @@ export class NavigationComponent implements OnInit {
     } catch (error) {
       throw new Error('Something went wrong.')
     }
+  }
+
+  clearInput(artist_name: string){
+    this.router.navigate(['/detail-view/', artist_name]);
+    this.searchTerm = '';
   }
 
 }
