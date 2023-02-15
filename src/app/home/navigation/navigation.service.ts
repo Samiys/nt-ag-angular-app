@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, last, map, shareReplay, throwError } from 'rxjs';
+import { Observable, Subject, catchError, debounceTime, last, map, of, shareReplay, switchMap, throttleTime, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -13,12 +13,16 @@ export class NavigationService {
   ) { }
 
   searchArtist(artist: string): Observable<any> {
-    return this.http.get<any>(environment.apiUrl + `artist.search&artist=${artist}&api_key=${environment.api_key}&format=json`)
-        .pipe(map( (response: any) => {
-          return response;
-            }), last(), catchError((error: HttpErrorResponse) => throwError(error.error)),
-            shareReplay(1)
-        );
+    return of(artist).pipe(
+      switchMap(artistName =>
+        this.http.get<any>(
+          environment.apiUrl +
+            `artist.search&artist=${artistName}&api_key=${environment.api_key}&format=json`
+        )
+      ),
+      catchError((error: HttpErrorResponse) => throwError(error.error)),
+      shareReplay(1)
+    );
   }
 
 }

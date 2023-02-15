@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationService } from '../navigation/navigation.service';
-import { firstValueFrom } from 'rxjs';
-import { DetailViewService } from '../detail-view/detail-view.service';
 
 @Component({
   selector: 'app-side-by-side',
@@ -20,8 +18,7 @@ export class SideBySideComponent implements OnInit {
   artistName: any;
 
   constructor(
-    private navigationSerivce: NavigationService,
-    private detailViewService: DetailViewService
+    private navigationSerivce: NavigationService
   ) { }
 
   ngOnInit(): void {
@@ -54,17 +51,6 @@ export class SideBySideComponent implements OnInit {
   async showArtistOneDetail(artist_name: string) {
     this.artistOneNameDetail = artist_name;
     this.isArtistOneMenuOpen = false;
-  }
-
-  async getArtistDetail(artist_name: string) {
-    let artistDetail = (await firstValueFrom(this.detailViewService.getArtistInfo(artist_name))).artist;
-    let topFiveTracks = (await firstValueFrom(this.detailViewService.topFiveTracks(artist_name))).toptracks.track;
-    let topFiveAlbums = (await firstValueFrom(this.detailViewService.topFiveAlbums(artist_name))).topalbums.album;
-    return {
-      artistDetail,
-      topFiveTracks,
-      topFiveAlbums
-    }
   }
 
   openArtistTwoMenu() {
