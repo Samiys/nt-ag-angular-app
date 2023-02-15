@@ -32,12 +32,42 @@ export class DetailViewComponent implements OnInit {
     this.getArtistData(this.artistOneInput ? this.artistOneInput : this.artistTwoInput);
   }
 
-  async getArtistData(artist_name: string){
-    this.artistDetail = (await firstValueFrom(this.detailViewService.getArtistInfo(artist_name))).artist;
-    this.topFiveTracks = (await firstValueFrom(this.detailViewService.topFiveTracks(artist_name))).toptracks.track;
-    this.topFiveAlbums = (await firstValueFrom(this.detailViewService.topFiveAlbums(artist_name))).topalbums.album;
-    if(this.artistDetail && this.topFiveTracks && this.topFiveAlbums)
-      this.isLoading = false;
+  getArtistData(artist_name: string){
+    this.detailViewService.getArtistInfo(artist_name).subscribe({
+      next: (resp) => {
+        this.artistDetail = resp.artist;
+      },
+      error: (e) => {
+        throw new Error(e.message)
+      },
+      complete: () => {
+        this.isLoading = false;
+      },
+    });
+
+    this.detailViewService.topFiveTracks(artist_name).subscribe({
+      next: (resp) => {
+        this.topFiveTracks = resp.toptracks.track;
+      },
+      error: (e) => {
+        throw new Error(e.message)
+      },
+      complete: () => {
+        this.isLoading = false;
+      },
+    });
+
+    this.detailViewService.topFiveAlbums(artist_name).subscribe({
+      next: (resp) => {
+        this.topFiveAlbums = resp.topalbums.album;
+      },
+      error: (e) => {
+        throw new Error(e.message)
+      },
+      complete: () => {
+        this.isLoading = false;
+      },
+    });
   }
 
 }

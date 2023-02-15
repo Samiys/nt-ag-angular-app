@@ -46,17 +46,16 @@ export class NavigationComponent implements OnInit {
   }
 
   async searchArtist() {
-    try {
-      this.navigationSerivce.searchArtist(this.searchTerm).subscribe(resp => {
-        if(resp) {
-          resp.results.artistmatches.artist.map(artist => {
-            this.artistsName.push(artist.name);
-          });
-        }
-      });
-    } catch (error) {
-      throw new Error('Something went wrong.')
-    }
+    this.navigationSerivce.searchArtist(this.searchTerm).subscribe({
+      next: (resp) => {
+        resp.results.artistmatches.artist.map(artist => {
+          this.artistsName.push(artist.name);
+        });
+      },
+      error: (e) => {
+        throw new Error(e.message)
+      }
+    });
   }
 
   clearInput(artist_name: string){

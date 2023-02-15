@@ -23,14 +23,22 @@ export class MainViewComponent implements OnInit {
     this.fetchTopArtists(this.selectedCountry);
   }
 
-  async updateList() {
+  updateList() {
     this.fetchTopArtists(this.selectedCountry);
   }
 
-  async fetchTopArtists(selectedCountry: string) {
-    this.topArtists = (await firstValueFrom(this.mainViewSerivce.getTopArtists(selectedCountry))).topartists.artist;
-    if(this.topArtists)
-      this.isLoading = false;
+  fetchTopArtists(selectedCountry: string) {
+    this.mainViewSerivce.getTopArtists(selectedCountry).subscribe({
+      next: (resp) => {
+        this.topArtists = resp.topartists.artist;
+      },
+      error: (e) => {
+        throw new Error(e.message)
+      },
+      complete: () => {
+        this.isLoading = false;
+      },
+    });
   }
 
 }
