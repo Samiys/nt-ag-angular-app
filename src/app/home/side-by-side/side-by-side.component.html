@@ -14,48 +14,10 @@
           <ul *ngIf="isArtistOneMenuOpen" id="myUL" class="overflow-auto h-80 w-full">
             <li *ngFor="let name of artistsOneName" class="cursor-default"><a (click)="showArtistOneDetail(name)">{{name}}</a></li>
           </ul>
-
         </mat-card-content>
       </mat-card>
-
-      <div class="w-full mt-5" *ngIf="artistOneNameDetail">
-        <div class="flex flex-1 justify-center">
-          <img mat-card-image [src]="artistOneNameDetail.artistDetail.image[4]['#text']">
-          <div class="mt-20 ml-5">
-            <h1 class="text-2xl font-bold text-gray-900">{{artistOneNameDetail.artistDetail.name}}</h1>
-            <h1 class="text-2xl font-bold text-gray-900">Listeners: {{artistOneNameDetail.artistDetail.stats.listeners | numberSuffex: 1}}</h1>
-            <h1 class="text-2xl font-bold text-gray-900">Plays: {{artistOneNameDetail.artistDetail.stats.playcount  | numberSuffex}}</h1>
-          </div>
-        </div>
-        <div class="grid grid-cols-2 gap-4 mt-5">
-          <div>
-            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Top 5 tracks</h2>
-            <mat-list>
-              <mat-list-item *ngFor="let track of artistOneNameDetail.topFiveTracks" class="mb-3">
-                <h2 class="list-avatar">
-                  <a class="avatar avatar-sm me-2">
-                    <img class="avatar-img rounded-circle" src="{{track.image[1]['#text']}}" alt="Artist Image">
-                  </a>
-                  <a [routerLink]="'/detail-view/'+ track.name" class="ml-3">{{track.name}} <br> <span>listeners: {{track.listeners}}</span></a>
-                </h2>
-              </mat-list-item>
-            </mat-list>
-          </div>
-          <div>
-            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Top 5 albums</h2>
-            <mat-list>
-              <mat-list-item *ngFor="let album of artistOneNameDetail.topFiveAlbums" class="mb-3">
-                <h2 class="list-avatar">
-                  <a class="avatar avatar-sm me-2">
-                    <img class="avatar-img rounded-circle" src="{{album.image[1]['#text']}}" alt="Artist Image">
-                  </a>
-                  <a [routerLink]="'/detail-view/'+ album.name" class="ml-3">{{album.name}}</a>
-                </h2>
-              </mat-list-item>
-            </mat-list>
-          </div>
-        </div>
-
+      <div class="w-full" *ngIf="artistOneNameDetail">
+        <app-detail-view [artistOneInput]="artistOneNameDetail"></app-detail-view>
       </div>
     </div>
     <div>
@@ -70,106 +32,8 @@
           </ul>
         </mat-card-content>
       </mat-card>
-
       <div class="w-full mt-5" *ngIf="artistTwoNameDetail">
-        <div class="flex flex-1 justify-center">
-          <img mat-card-image [src]="artistTwoNameDetail.artistDetail.image[4]['#text']">
-          <div class="mt-20 ml-5">
-            <h1 class="text-2xl font-bold text-gray-900">{{artistTwoNameDetail.artistDetail.name}}</h1>
-            <h1 class="text-2xl font-bold text-gray-900">Listeners: {{artistTwoNameDetail.artistDetail.stats.listeners | numberSuffex: 1}}</h1>
-            <h1 class="text-2xl font-bold text-gray-900">Plays: {{artistTwoNameDetail.artistDetail.stats.playcount  | numberSuffex}}</h1>
-          </div>
-        </div>
-        <div class="grid grid-cols-2 gap-4 mt-5">
-          <div>
-            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Top 5 tracks</h2>
-            <mat-list>
-              <mat-list-item *ngFor="let track of artistTwoNameDetail.topFiveTracks" class="mb-3">
-                <h2 class="list-avatar">
-                  <a class="avatar avatar-sm me-2">
-                    <img class="avatar-img rounded-circle" src="{{track.image[1]['#text']}}" alt="Artist Image">
-                  </a>
-                  <a [routerLink]="'/detail-view/'+ track.name" class="ml-3">{{track.name}} <br> <span>listeners: {{track.listeners}}</span></a>
-                </h2>
-              </mat-list-item>
-            </mat-list>
-          </div>
-          <div>
-            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Top 5 albums</h2>
-            <mat-list>
-              <mat-list-item *ngFor="let album of artistTwoNameDetail.topFiveAlbums" class="mb-3">
-                <h2 class="list-avatar">
-                  <a class="avatar avatar-sm me-2">
-                    <img class="avatar-img rounded-circle" src="{{album.image[1]['#text']}}" alt="Artist Image">
-                  </a>
-                  <a [routerLink]="'/detail-view/'+ album.name" class="ml-3">{{album.name}}</a>
-                </h2>
-              </mat-list-item>
-            </mat-list>
-          </div>
-        </div>
+        <app-detail-view [artistTwoInput]="artistTwoNameDetail"></app-detail-view>
     </div>
   </div>
-
-
-  <!-- <mat-grid-list cols="2" rowHeight="2:2" gutterSize="20px">
-    <mat-grid-tile>
-      <mat-card class="w-180">
-        <mat-card-header>
-          <mat-card-subtitle class="text-xl font-bold text-black mb-5">Artist 1</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content class="cursor-default overflow-auto h-120" [ngClass]="artistOneNameDetail ? '' : ''">
-          <input [(ngModel)]="searchArtist1" type="text" id="myInput" (input)="openArtistOneMenu()" placeholder="Search for artist.." title="Type in a name">
-          <ul *ngIf="isArtistOneMenuOpen" id="myUL" class="overflow-auto h-80 w-full">
-            <li *ngFor="let name of artistsOneName" class="cursor-default"><a (click)="showArtistOneDetail(name)">{{name}}</a></li>
-          </ul>
-          <div class="w-full" *ngIf="artistOneNameDetail">
-            <img mat-card-image [src]="artistOneNameDetail.artistDetail.image[4]['#text']"
-            alt="Photo of a Shiba Inu">
-            <div class="pt-1.5">
-              <h1 class="text-2xl font-bold text-gray-900">{{artistOneNameDetail.artistDetail.name}}</h1>
-              <h1 class="text-2xl font-bold text-gray-900">Listeners: {{artistOneNameDetail.artistDetail.stats.listeners | numberSuffex: 1}}</h1>
-              <h1 class="text-2xl font-bold text-gray-900">Plays: {{artistOneNameDetail.artistDetail.stats.playcount  | numberSuffex}}</h1>
-            </div>
-            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Top 5 tracks</h2>
-            <mat-list>
-              <mat-list-item *ngFor="let track of artistOneNameDetail.topFiveTracks" class="mb-3">
-                <h2 class="list-avatar">
-                  <a class="avatar avatar-sm me-2">
-                    <img class="avatar-img rounded-circle" src="{{track.image[1]['#text']}}" alt="Artist Image">
-                  </a>
-                  <a [routerLink]="'/detail-view/'+ track.name" class="ml-3">{{track.name}} <br> <span>listeners: {{track.listeners}}</span></a>
-                </h2>
-              </mat-list-item>
-            </mat-list>
-
-            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Top 5 albums</h2>
-            <mat-list>
-              <mat-list-item *ngFor="let album of artistOneNameDetail.topFiveAlbums" class="mb-3">
-                <h2 class="list-avatar">
-                  <a class="avatar avatar-sm me-2">
-                    <img class="avatar-img rounded-circle" src="{{album.image[1]['#text']}}" alt="Artist Image">
-                  </a>
-                  <a [routerLink]="'/detail-view/'+ album.name" class="ml-3">{{album.name}}</a>
-                </h2>
-              </mat-list-item>
-            </mat-list>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card class="w-180">
-        <mat-card-header>
-          <mat-card-subtitle class="text-xl font-bold text-black mb-5">Artist 2</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content class="cursor-default">
-          <input [(ngModel)]="searchArtist2" type="text" id="myInput" (input)="openArtistTwoMenu()" placeholder="Search for artist.." title="Type in a name">
-          <ul *ngIf="isArtistTwoMenuOpen" id="myUL" class="overflow-auto cursor-default h-80 w-full">
-            <li *ngFor="let name of artistsTwoName"><a>{{name}}</a></li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list> -->
 </div>

@@ -15,8 +15,8 @@ export class SideBySideComponent implements OnInit {
   searchArtist2: string;
   isArtistOneMenuOpen = false;
   isArtistTwoMenuOpen = false;
-  artistOneNameDetail: any;
-  artistTwoNameDetail: any;
+  artistOneNameDetail: string;
+  artistTwoNameDetail: string;
   artistName: any;
 
   constructor(
@@ -52,7 +52,7 @@ export class SideBySideComponent implements OnInit {
   }
 
   async showArtistOneDetail(artist_name: string) {
-    this.artistOneNameDetail = await this.getArtistDetail(artist_name);
+    this.artistOneNameDetail = artist_name;
     this.isArtistOneMenuOpen = false;
   }
 
@@ -92,7 +92,7 @@ export class SideBySideComponent implements OnInit {
   }
 
   async showArtistTwoDetail(artist_name: string) {
-    this.artistTwoNameDetail = await this.getArtistDetail(artist_name);
+    this.artistTwoNameDetail = artist_name;
     this.isArtistTwoMenuOpen = false;
   }
 
